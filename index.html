@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simphiwe's Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="page">
+        <h1>💗 Hello Baby Happy Valentines Enter 4-Digit Code 💗</h1>
+        <input type="password" id="code" maxlength="4" placeholder="****" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+        <button onclick="checkCode()">Login</button>
+        <p id="error" class="error"></p>
+    </div>
+
+    <!-- Search Page -->
+    <div id="search-page" class="page hidden">
+        <h1>💞 Search: "How long we've been together" 💞</h1>
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button onclick="searchRelationship()">Search</button>
+    </div>
+
+    <!-- Timer Page -->
+    <div id="timer-page" class="page hidden">
+        <h1>💝 We've been together for: 💝</h1>
+        <div id="timer"></div>
+        <button onclick="nextPage()">Next</button>
+    </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const relationshipStartDate = new Date('2023-03-13T00:00:00');
+            startTimer(relationshipStartDate);
+        });
+
+        function checkCode() {
+            const code = document.getElementById('code').value;
+            const error = document.getElementById('error');
+            if (code === '1303') {
+                document.getElementById('login-page').classList.add('hidden');
+                document.getElementById('search-page').classList.remove('hidden');
+            } else {
+                error.textContent = "❌ Incorrect code. Hint: Our anniversary day.";
+                setTimeout(() => {
+                    error.textContent = "";
+                }, 3000);
+            }
+        }
+    </script>
+
+    <!-- Photo Gallery Page -->
+    <div id="photo-page" class="page hidden">
+        <audio autoplay loop>
+            <source src="background.mp3" type="audio/mpeg">
+        </audio>
+        <div class="gallery">
+            <div class="photo">
+                <img src="photos/date.jpg" alt="Memory 1">
+                <p>🌹 Us On A Date 🌹</p>
+            </div>
+            <div class="photo">
+                <img src="photos/first.jpg" alt="Memory 2">
+                <p>💞 Our First Pic Together💞</p>
+            </div>
+            <div class="photo">
+                <img src="photos/happy.jpg" alt="Memory 3">
+                <p>💗 Us Being Us 💗</p>
+            </div>
+            <div class="photo">
+                <img src="photos/random.jpg" alt="Memory 4">
+                <p>🎆 Random Happy Moment 🎆</p>
+            </div>
+        </div>
+        <button onclick="showNote()">Next</button>
+    </div>
+
+    <!-- Message Page -->
+    <div id="note-page" class="page hidden">
+        <div class="note">
+            <h2>💖 My Love Note to You 💖</h2>
+            <p>From the moment we met, every second has been special. I cherish every day with you sthandwa sami. Happy Valentine's Day, my love looking forward to seeing you today I love you Mncwaa Mncwaa! ❤️</p>
+            <div>💐🌹💕💌💘</div> <br>
+            <button onclick="location.reload()">Restart</button>
+        </div>
+    </div>
+</body>
+</html>
